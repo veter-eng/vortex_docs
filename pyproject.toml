@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "vortex_docs"
+version = "0.1.0"
+description = "Plataforma Vortex"
+authors = ["Henrique Morais <rikeaju@hotmail.com>"]
+license = "Apache 3.0"
+readme = "README.md"
+packages = [{include = "vortex_docs"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.doc.dependencies]
+mkdocs-material = "^9.1.21"
+mkdocstrings = "^0.22.0"
+mkdocstrings-python = "^1.4.0"
+mkdocs-autorefs = "^0.5.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+flake8 = "^6.1.0"
+pre-commit = "^3.3.3"
+vulture = "^2.8"
+interrogate = "^1.5.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.interrogate]
+ignore-init-method = false
+ignore-init-module = true
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = true
+ignore-module = true
+ignore-nested-functions = false
+ignore-nested-classes = true
+ignore-setters = false
+exclude = ["setup.py", "docs", "build", "tests", "*exceptions.py"]
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
+verbose = 2
+quiet = false
+whitelist-regex = []
+color = true
+omit-covered-files = false
+generate-badge = "docs/assets/"
+badge-format = "svg"
+--badge-style = "flat-square-modified"
