@@ -19,8 +19,8 @@ theme:
     - search.suggest
   name: material
   language: pt-BR
-  logo: assets/material.svg
-  favicon: assets/material.svg
+  logo: assets/vortex.png
+  favicon: assets/vortex.png
   palette:
     - scheme: default
       primary: black
