@@ -104,3 +104,9 @@ nav:
   - Home: index.md
   - Arquitetura:
     - Resumo: arquitetura/resumo.md
+  - Vortex Server:
+    - Visão Geral: vortex_server/index.md
+  - Vortex Collector:
+    - Visão Geral: vortex_collector/index.md
+  - Vortex API:
+    - Visão Geral: vortex_api/index.md
