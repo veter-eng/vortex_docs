@@ -29,8 +29,8 @@ theme:
         icon: material/lightbulb
         name: Modo Noturno
     - scheme: slate
-      primary: yellow
-      accent: yellow
+      primary: magenta
+      accent: magenta
       toggle:
         icon: material/lightbulb-outline
         name: Modo Claro
@@ -99,3 +99,8 @@ extra:
     - name: EN
       link: /en/
       lang: en
+
+nav:
+  - Home: index.md
+  - Arquitetura:
+    - Resumo: arquitetura/resumo.md
