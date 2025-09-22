@@ -253,7 +253,7 @@ Atualmente, a API opera sem autenticação para ambiente de desenvolvimento. Par
 4. Preencha os parâmetros necessários
 5. Execute a requisição
 
-### Via cURL
+### Via CURL
 
 ```bash
 # Listar todos os coletores
