@@ -110,10 +110,69 @@ gh repo clone <repositorio>
 
 ### Configuração da Aplicação
 
-1. **Configurar variáveis de ambiente** no arquivo `.env`
-2. **Configurar string de conexão** do PostgreSQL (container)
-3. **Configurar endereços** do RabbitMQ (Windows) e InfluxDB (container)
-4. **Configurar comunicação** entre componentes containerizados e RabbitMQ externo
+#### 1. Configurar RabbitMQ no Windows
+
+**Adicionar RabbitMQ ao PATH:**
+
+1. Localize a pasta `sbin` do RabbitMQ:
+   ```
+   C:\Program Files\RabbitMQ Server\rabbitmq_server-4.0.9\sbin
+   ```
+
+2. Adicione ao PATH do sistema:
+   - Abra "Editar variáveis de ambiente do sistema"
+   - Clique em "Variáveis de Ambiente"
+   - Em "Variáveis do sistema", selecione `Path` e clique em "Editar"
+   - Clique em "Novo" e cole o caminho da pasta `sbin`
+   - Confirme e feche todas as janelas
+
+3. Teste no PowerShell:
+   ```powershell
+   rabbitmqctl status
+   ```
+
+**Ativar painel web de gerenciamento:**
+```powershell
+# Ativar plugin
+rabbitmq-plugins enable rabbitmq_management
+
+# Reiniciar serviço
+Restart-Service rabbitmq
+
+# Acessar: http://localhost:15672
+# Usuário: guest | Senha: guest
+```
+
+**Criar usuário para Docker:**
+```powershell
+# Criar usuário para containers
+rabbitmqctl add_user vortex vortex123
+rabbitmqctl set_user_tags vortex administrator
+rabbitmqctl set_permissions -p / vortex ".*" ".*" ".*"
+```
+
+#### 2. Configurar Variáveis de Ambiente
+
+Crie arquivo `.env` com as configurações de variáveis de ambiente do projeto:
+
+```env
+QUESTDB_HOST=questdb
+QUESTDB_PORT=8812
+QUESTDB_DATABASE=
+QUESTDB_USERNAME=
+QUESTDB_PASSWORD=
+
+RABBITMQ_HOST=host.docker.internal
+RABBITMQ_PORT=5672
+RABBITMQ_USERNAME=
+RABBITMQ_PASSWORD=
+
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DATABASE=
+POSTGRES_USERNAME=
+POSTGRES_PASSWORD=
+```
 
 ### Execução da Aplicação
 
