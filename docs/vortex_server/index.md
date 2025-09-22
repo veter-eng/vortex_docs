@@ -31,7 +31,7 @@ O servidor utiliza uma arquitetura baseada em filas de mensagens, onde:
 
 - **.NET 9**: Framework principal da aplicação
 - **PostgreSQL**: Banco de dados para configurações
-- **QuestDB**: Banco de dados time series para dados coletados
+- **InfluxDB**: Banco de dados time series para dados coletados
 - **RabbitMQ**: Broker de mensagens
 - **Erlang**: Runtime necessário para o RabbitMQ
 - **Docker**: Containerização da aplicação
