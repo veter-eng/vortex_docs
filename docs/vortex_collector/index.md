@@ -42,35 +42,34 @@ O coletor segue uma arquitetura baseada em serviços distribuídos:
 
 ### Pré-requisitos
 
-#### Dependências do Sistema
-```bash
-# .NET 9 Runtime
-wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
-chmod +x dotnet-install.sh
-./dotnet-install.sh --channel 9.0
-
-# Configurar variáveis de ambiente
-echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
-echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.bashrc
-source ~/.bashrc
-```
-
 #### Servidor OPC DA
 O coletor requer um servidor OPC DA funcionando na rede. Configurações típicas:
 - **Host**: localhost ou IP do servidor OPC
 - **Porta**: Porta padrão do OPC DA (geralmente 135)
 - **CLSID**: Identificador do servidor OPC
 
-### Configuração
+#### Serviços Dependentes
+- **RabbitMQ**: Broker de mensagens para transmissão de dados
+- **Vortex API**: Serviço de configuração (http://localhost:5000)
+- **PostgreSQL**: Banco de dados para configurações
 
-#### Variáveis de Ambiente
-```csharp
-// Configurações padrão no Program.cs
-private const string OpcdaTag = "localhost";
-private const string RabbitMqHost = "localhost";
-private const string ConfigurationServiceUrl = "http://localhost:5000";
-private const string PostgresConnectionString = "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=vortex_server_config";
+### Instalação
+
+O Vortex Collector é distribuído como um **executável pronto** (.exe), não sendo necessária a instalação de dependências adicionais.
+
+#### Download e Execução
+```bash
+# Baixar o executável da release v1.0.0
+# https://github.com/veter-eng/vortex_collector/releases/tag/v1.0.0
+
+# Executar diretamente
+./vortex_collector.exe
+
+# Ou no Windows
+vortex_collector.exe
 ```
+
+**📥 Download Direto**: [Release v1.0.0](https://github.com/veter-eng/vortex_collector/releases/tag/v1.0.0)
 
 #### Configuração de Coletores
 Os coletores devem ser configurados no banco de dados PostgreSQL através da API do Vortex. Cada coletor possui:
@@ -79,23 +78,6 @@ Os coletores devem ser configurados no banco de dados PostgreSQL através da API
 - **IP do Servidor**: Endereço do servidor de configuração (opcional)
 - **Tags**: Lista de tags OPC para coleta
 - **Gateway**: Informações do gateway de comunicação
-
-### Instalação
-
-```bash
-# Clonar repositório
-git clone [repository-url]
-cd vortex_collector
-
-# Restaurar dependências
-dotnet restore
-
-# Compilar projeto
-dotnet build
-
-# Executar aplicação
-dotnet run
-```
 
 ## 🔧 Configuração Avançada
 
@@ -113,36 +95,6 @@ vortex_collector/
 └── Program.cs          # Ponto de entrada da aplicação
 ```
 
-### Serviços Principais
-
-#### ConfigurationService
-Responsável por buscar configurações da API:
-```csharp
-// Busca tags configuradas
-var tags = await configurationService.GetConfiguredTagsAsync();
-
-// Atualiza URL base do serviço
-configurationService.UpdateBaseUrl(serverUrl);
-```
-
-#### OpcDaTagReader
-Realiza a leitura dos dados OPC DA:
-```csharp
-var tagReader = new OpcDaTagReader(OpcdaTag, configurationService);
-```
-
-#### RabbitMqService
-Gerencia o envio de dados:
-```csharp
-var messageQueue = new RabbitMqService(RabbitMqHost, collectorInfo.Name);
-```
-
-#### CollectorService
-Orquestra a coleta de dados:
-```csharp
-var service = new CollectorService(tagReader, messageQueue);
-await service.RunAsync();
-```
 
 ## 📊 Monitoramento e Logs
 
@@ -241,3 +193,8 @@ As configurações são atualizadas dinamicamente via API. Não é necessário r
 - **Horizontal**: Múltiplos coletores podem executar simultaneamente
 - **Vertical**: Suporta grande quantidade de tags por coletor
 - **Distribuída**: Coletores podem estar em diferentes redes/locais
+
+
+
+
+
