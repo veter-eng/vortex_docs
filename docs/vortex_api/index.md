@@ -40,68 +40,36 @@ A API utiliza uma arquitetura em camadas baseada em:
 - **Npgsql**: Driver PostgreSQL para .NET
 - **Docker**: Containerização da aplicação
 
-## 🚀 Instalação e Configuração
+## 🚀 Execução
 
-### Pré-requisitos
+A Vortex API é executada como parte do ecossistema completo da Plataforma Vortex através do docker-compose do Vortex Server.
 
-#### PostgreSQL
-```bash
-# Instalar PostgreSQL 17
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y wget gnupg2 lsb-release
+### Execução Integrada
 
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /usr/share/keyrings/postgresql-archive-keyring.gpg
-
-echo "deb [signed-by=/usr/share/keyrings/postgresql-archive-keyring.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-
-sudo apt update
-sudo apt install -y postgresql-17
-
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
-```
-
-#### .NET 9
-```bash
-wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
-chmod +x dotnet-install.sh
-./dotnet-install.sh --channel 9.0
-
-echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
-echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.bashrc
-source ~/.bashrc
-```
-
-### Configuração
-
-#### String de Conexão
-Configure a string de conexão no `appsettings.json`:
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5432;Username=postgres;Password=admin;Database=vortex_server_config"
-  }
-}
-```
-
-### Instalação
+A API é automaticamente iniciada junto com todos os outros componentes da plataforma:
 
 ```bash
-# Clonar repositório
-git clone [repository-url]
-cd vortex_server_api
+# Executar toda a plataforma (incluindo a API)
+docker-compose up -d
 
-# Restaurar dependências
-dotnet restore
+# Verificar status de todos os serviços
+docker-compose ps
 
-# Aplicar migrations
-dotnet ef database update
+# Visualizar logs da API especificamente
+docker-compose logs -f vortex-api
+```
 
-# Compilar projeto
-dotnet build
+### Comandos de Gerenciamento
 
-# Executar aplicação
-dotnet run
+```bash
+# Parar todos os serviços
+docker-compose down
+
+# Reiniciar apenas a API
+docker-compose restart vortex-api
+
+# Verificar logs em tempo real
+docker-compose logs -f
 ```
 
 ### Acesso
@@ -109,6 +77,10 @@ dotnet run
 - **API Base URL**: `http://localhost:5000`
 - **Swagger UI**: `http://localhost:5000/swagger`
 - **Swagger JSON**: `http://localhost:5000/swagger/v1/swagger.json`
+
+### Configuração
+
+A API é configurada automaticamente através do docker-compose do Vortex Server. As configurações de banco de dados são gerenciadas pelos serviços PostgreSQL containerizados, eliminando a necessidade de configuração manual de strings de conexão.
 
 ## 📚 Endpoints da API
 
@@ -253,7 +225,7 @@ Atualmente, a API opera sem autenticação para ambiente de desenvolvimento. Par
 4. Preencha os parâmetros necessários
 5. Execute a requisição
 
-### Via cURL
+### Via CURL
 
 ```bash
 # Listar todos os coletores
@@ -307,40 +279,22 @@ vortex_server_api/
 
 ## 🔧 Configurações Avançadas
 
-### Entity Framework
+### Ambiente Containerizado
 
-A API utiliza Entity Framework Core com PostgreSQL:
+A API é configurada automaticamente para funcionar no ambiente Docker do Vortex Server:
 
-```csharp
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
-```
+- **Banco de Dados**: Conecta automaticamente ao PostgreSQL containerizado
+- **Rede**: Comunica-se com outros serviços através da rede Docker interna
+- **Configurações**: Todas as configurações são gerenciadas via variáveis de ambiente do docker-compose
 
-### Injeção de Dependência
+### Arquitetura Interna
 
-Serviços registrados no container DI:
+A API utiliza uma arquitetura em camadas com:
 
-```csharp
-builder.Services.AddScoped<IConfigEquipmentsService, ConfigEquipmentsService>();
-builder.Services.AddScoped<IConfigGatewaysService, ConfigGatewaysService>();
-builder.Services.AddScoped<IConfigTagsService, ConfigTagsService>();
-builder.Services.AddScoped<IConfigColetorService, ConfigColetorService>();
-```
-
-### Swagger
-
-Configuração do Swagger para documentação:
-
-```csharp
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-```
+- **Entity Framework Core**: Para acesso ao PostgreSQL containerizado
+- **Injeção de Dependência**: Serviços registrados automaticamente
+- **Swagger**: Documentação interativa disponível em `/swagger`
+- **Validação**: DTOs com validação automática de dados
 
 ## 🐛 Troubleshooting
 
@@ -373,17 +327,26 @@ Swagger UI: http://localhost:5000/swagger
 ## 🔄 Integração com Outros Componentes
 
 ### Vortex Collector
-O Collector busca configurações via:
+O Collector busca configurações da API para saber quais tags coletar:
 ```csharp
 var configurationService = new ConfigurationService(httpClient, "http://localhost:5000");
 var tags = await configurationService.GetConfiguredTagsAsync();
+var collectors = await configurationService.GetConfiguredCollectorsAsync();
 ```
 
 ### Vortex Server
-O Server descobre coletores via:
+O Server utiliza a API para descobrir e gerenciar coletores automaticamente:
 ```csharp
-var existingCollectors = CollectorsDiscoveryService.GetQueueConfigurations(settings);
+// O Server consulta a API para descobrir coletores configurados
+var existingCollectors = await apiService.GetConfiguredCollectorsAsync();
+// E inicia os serviços de processamento para cada coletor encontrado
 ```
+
+### Fluxo de Configuração
+1. **Administrador** configura coletores, equipamentos e tags via API
+2. **Vortex Server** descobre automaticamente as configurações via API
+3. **Vortex Collector** busca suas configurações específicas via API
+4. **Sistema** inicia a coleta de dados baseada nas configurações
 
 ## 📈 Performance e Escalabilidade
 
