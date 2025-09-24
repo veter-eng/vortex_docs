@@ -104,6 +104,8 @@ nav:
   - Home: index.md
   - Arquitetura:
     - Resumo: arquitetura/resumo.md
+  - Proposta Comercial:
+    - Vortex Server: proposta_comercial/index.md
   - Vortex Server:
     - Visão Geral: vortex_server/index.md
   - Vortex Collector:
