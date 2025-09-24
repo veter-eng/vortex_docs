@@ -61,7 +61,7 @@ A Plataforma Vortex é uma solução completa e robusta para **coleta, processam
 
     Banco de dados relacional para configurações
 
--   **QuestDB**
+-   **InfluxDB**
 
     Banco de dados time series para dados coletados
 
