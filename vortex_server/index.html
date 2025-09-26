@@ -1,0 +1,1678 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Essa documentação foi criada com o intuito de ajudar os clientes que utilizam a Plataforma Vortex.">
+      
+      
+        <meta name="author" content="Henrique Morais">
+      
+      
+      
+        <link rel="prev" href="../proposta_comercial/">
+      
+      
+        <link rel="next" href="../vortex_collector/">
+      
+      
+      <link rel="icon" href="../assets/vortex.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Vortex Server - Plataforma Vortex</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vortex-server" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Plataforma Vortex" class="md-header__button md-logo" aria-label="Plataforma Vortex" data-md-component="logo">
+      
+  <img src="../assets/vortex.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plataforma Vortex
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vortex Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="yellow"  aria-label="Modo Noturno"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Modo Noturno" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="magenta" data-md-color-accent="magenta"  aria-label="Modo Claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Modo Claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Selecione o idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/pt/" hreflang="pt" class="md-select__link">
+              PT
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              EN
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/veter-eng/vortex_docs" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vortex_docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../arquitetura/resumo/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Arquitetura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../proposta_comercial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Proposta Comercial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vortex Server
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../vortex_collector/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vortex Collector
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../vortex_api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Vortex API
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Plataforma Vortex" class="md-nav__button md-logo" aria-label="Plataforma Vortex" data-md-component="logo">
+      
+  <img src="../assets/vortex.png" alt="logo">
+
+    </a>
+    Plataforma Vortex
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/veter-eng/vortex_docs" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    vortex_docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/resumo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Arquitetura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proposta_comercial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Proposta Comercial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Vortex Server
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vortex Server
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Visão Geral
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Visão Geral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principais-funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principais Funcionalidades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tecnologias Utilizadas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao-e-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Instalação e Configuração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Instalação e Configuração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-requisitos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pré-requisitos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-desktop-wsl-2-para-componentes-containerizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Desktop + WSL 2 (Para componentes containerizados)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erlang-pre-requisito-do-rabbitmq-409" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erlang (Pré-requisito do RabbitMQ 4.0.9)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rabbitmq-broker-de-mensagens" class="md-nav__link">
+    <span class="md-ellipsis">
+      RabbitMQ (Broker de Mensagens)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtenção do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração da Aplicação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuração da Aplicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-rabbitmq-no-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configurar RabbitMQ no Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configurar Variáveis de Ambiente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execucao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execução da Aplicação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execução da Aplicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-iniciar-rabbitmq-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Iniciar RabbitMQ (Windows)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-executar-componentes-containerizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Executar Componentes Containerizados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-estrutura-do-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Estrutura do Docker Compose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-portas-e-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Portas e Acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verificacao-da-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Verificação da Instalação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura de Execução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitetura de Execução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-executados-fora-do-container-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Componentes Executados FORA do Container (Windows)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes-executados-dentro-do-container-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐳 Componentes Executados DENTRO do Container (Docker)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Monitoramento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Monitoramento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acessos-para-monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acessos para Monitoramento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manutencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Manutenção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Manutenção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limpeza-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limpeza de Recursos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-manutencao-diaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos de Manutenção Diária
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vortex_collector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vortex Collector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vortex_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Vortex API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Visão Geral
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Visão Geral">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principais-funcionalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principais Funcionalidades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Tecnologias Utilizadas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacao-e-configuracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Instalação e Configuração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Instalação e Configuração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-requisitos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pré-requisitos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-desktop-wsl-2-para-componentes-containerizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Desktop + WSL 2 (Para componentes containerizados)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erlang-pre-requisito-do-rabbitmq-409" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erlang (Pré-requisito do RabbitMQ 4.0.9)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rabbitmq-broker-de-mensagens" class="md-nav__link">
+    <span class="md-ellipsis">
+      RabbitMQ (Broker de Mensagens)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtencao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Obtenção do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuração da Aplicação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuração da Aplicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configurar-rabbitmq-no-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configurar RabbitMQ no Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configurar-variaveis-de-ambiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Configurar Variáveis de Ambiente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execucao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Execução da Aplicação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execução da Aplicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-iniciar-rabbitmq-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Iniciar RabbitMQ (Windows)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-executar-componentes-containerizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Executar Componentes Containerizados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-estrutura-do-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Estrutura do Docker Compose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-portas-e-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Portas e Acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verificacao-da-instalacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Verificação da Instalação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura de Execução
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitetura de Execução">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-executados-fora-do-container-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Componentes Executados FORA do Container (Windows)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes-executados-dentro-do-container-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐳 Componentes Executados DENTRO do Container (Docker)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Monitoramento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Monitoramento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acessos-para-monitoramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acessos para Monitoramento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manutencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Manutenção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Manutenção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limpeza-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limpeza de Recursos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-de-manutencao-diaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comandos de Manutenção Diária
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="vortex-server">Vortex Server</h1>
+<div style="text-align: left;">
+  <img src="../assets/vortex.png" alt="Vortex" width="100" height="100">
+</div>
+
+<p>O Vortex Server é o núcleo orquestrador dos microsserviços da Plataforma Vortex. Este componente é responsável por gerenciar e coordenar toda a infraestrutura de coleta, processamento e armazenamento de dados industriais.</p>
+<h2 id="visao-geral">📋 Visão Geral</h2>
+<p>O Vortex Server atua como o maestro de uma orquestra, coordenando múltiplos coletores de dados e garantindo que todas as informações sejam processadas e armazenadas adequadamente nos bancos de dados apropriados.</p>
+<h3 id="principais-funcionalidades">Principais Funcionalidades</h3>
+<ul>
+<li><strong>Orquestração de Microsserviços</strong>: Gerencia e coordena todos os componentes da plataforma</li>
+<li><strong>Descoberta Automática de Coletores</strong>: Identifica e configura automaticamente os coletores disponíveis</li>
+<li><strong>Gerenciamento de Filas</strong>: Processa mensagens dos coletores através do RabbitMQ</li>
+<li><strong>Persistência de Dados</strong>: Armazena dados em InfluxDB (time series) e PostgreSQL (configurações)</li>
+<li><strong>Configuração Centralizada</strong>: Gerencia configurações de toda a plataforma</li>
+</ul>
+<h3 id="arquitetura">Arquitetura</h3>
+<p>O servidor utiliza uma arquitetura baseada em filas de mensagens, onde:</p>
+<ol>
+<li><strong>Inicialização</strong>: Verifica e inicializa as conexões com os bancos de dados</li>
+<li><strong>Descoberta</strong>: Busca coletores configurados no banco de dados</li>
+<li><strong>Orquestração</strong>: Inicia serviços de fila para cada coletor descoberto</li>
+<li><strong>Processamento</strong>: Processa continuamente as mensagens recebidas dos coletores</li>
+</ol>
+<h2 id="tecnologias-utilizadas">🛠️ Tecnologias Utilizadas</h2>
+<ul>
+<li><strong>.NET 9</strong>: Framework principal da aplicação</li>
+<li><strong>PostgreSQL</strong>: Banco de dados para configurações</li>
+<li><strong>InfluxDB</strong>: Banco de dados time series para dados coletados</li>
+<li><strong>RabbitMQ</strong>: Broker de mensagens</li>
+<li><strong>Erlang</strong>: Runtime necessário para o RabbitMQ</li>
+<li><strong>Grafana</strong>: Observabilidade e dashboards para visualização de métricas</li>
+<li><strong>Docker</strong>: Containerização da aplicação</li>
+</ul>
+<h2 id="instalacao-e-configuracao">🚀 Instalação e Configuração</h2>
+<h3 id="pre-requisitos">Pré-requisitos</h3>
+<p>A aplicação Vortex utiliza uma arquitetura híbrida onde alguns componentes são executados via Docker e outros diretamente no Windows:</p>
+<h4 id="docker-desktop-wsl-2-para-componentes-containerizados">Docker Desktop + WSL 2 (Para componentes containerizados)</h4>
+<ol>
+<li>
+<p><strong>Instalar WSL 2:</strong>
+   <div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Abrir PowerShell como administrador</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span> <span class="n">-d</span> <span class="n">Ubuntu</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Instalar Docker Desktop:</strong></p>
+</li>
+<li>Baixe o instalador do <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a></li>
+<li>Durante a instalação, marque "Use WSL 2 instead of Hyper-V (recommended)"</li>
+<li>Reinicie o computador após a instalação</li>
+</ol>
+<h3 id="erlang-pre-requisito-do-rabbitmq-409">Erlang (Pré-requisito do RabbitMQ 4.0.9)</h3>
+<p><strong>Download direto:</strong>
+- Baixe o Erlang/OTP 27.x para Windows: <a href="https://www.erlang.org/downloads">https://www.erlang.org/downloads</a>
+- Escolha a versão Windows 64-bit (.exe) mais recente da série 27.x
+- Execute o instalador como administrador</p>
+<p><strong>Ou via Chocolatey (PowerShell como administrador):</strong>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Instalar Chocolatey (se não tiver)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">Set-ExecutionPolicy</span> <span class="n">Bypass</span> <span class="n">-Scope</span> <span class="k">Process</span> <span class="n">-Force</span><span class="p">;</span> <span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="p">=</span> <span class="no">[System.Net.ServicePointManager]</span><span class="p">::</span><span class="n">SecurityProtocol</span> <span class="o">-bor</span> <span class="n">3072</span><span class="p">;</span> <span class="nb">iex </span><span class="p">((</span><span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://community.chocolatey.org/install.ps1&#39;</span><span class="p">))</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># Instalar Erlang (versão mais recente compatível com RabbitMQ 4.0.9)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">choco</span> <span class="n">install</span> <span class="n">erlang</span>
+</span></code></pre></div></p>
+<h3 id="rabbitmq-broker-de-mensagens">RabbitMQ (Broker de Mensagens)</h3>
+<p><strong>Download direto:</strong>
+- Baixe o RabbitMQ 4.0.9 para Windows: <a href="https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.0.9">https://github.com/rabbitmq/rabbitmq-server/releases/tag/v4.0.9</a>
+- Escolha o arquivo <code>rabbitmq-server-4.0.9.exe</code>
+- Execute o instalador como administrador</p>
+<p><strong>Ou via Chocolatey (PowerShell como administrador):</strong>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Instalar RabbitMQ</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">choco</span> <span class="n">install</span> <span class="n">rabbitmq</span> <span class="p">-</span><span class="n">-version</span><span class="p">=</span><span class="n">4</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">9</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># Iniciar serviço RabbitMQ</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">Start-Service</span> <span class="n">RabbitMQ</span>
+</span></code></pre></div></p>
+<h3 id="obtencao-do-projeto">Obtenção do Projeto</h3>
+<p><strong>Download direto:</strong>
+- Baixe o GitHub CLI para Windows: <a href="https://cli.github.com/">https://cli.github.com/</a>
+- Execute o instalador como administrador</p>
+<p><strong>Ou via Chocolatey (PowerShell como administrador):</strong>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Instalar GitHub CLI</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">choco</span> <span class="n">install</span> <span class="n">gh</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># Configurar e clonar projeto</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">gh</span> <span class="n">auth</span> <span class="n">login</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos="6 "></span></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">gh</span> <span class="n">repo</span> <span class="n">clone</span> <span class="p">&lt;</span><span class="n">repositorio</span><span class="p">&gt;</span>
+</span></code></pre></div></p>
+<h3 id="configuracao-da-aplicacao">Configuração da Aplicação</h3>
+<h4 id="1-configurar-rabbitmq-no-windows">1. Configurar RabbitMQ no Windows</h4>
+<p><strong>Adicionar RabbitMQ ao PATH:</strong></p>
+<ol>
+<li>
+<p>Localize a pasta <code>sbin</code> do RabbitMQ:
+   <div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a>C:\Program Files\RabbitMQ Server\rabbitmq_server-4.0.9\sbin
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Adicione ao PATH do sistema:</p>
+</li>
+<li>Abra "Editar variáveis de ambiente do sistema"</li>
+<li>Clique em "Variáveis de Ambiente"</li>
+<li>Em "Variáveis do sistema", selecione <code>Path</code> e clique em "Editar"</li>
+<li>Clique em "Novo" e cole o caminho da pasta <code>sbin</code></li>
+<li>
+<p>Confirme e feche todas as janelas</p>
+</li>
+<li>
+<p>Teste no PowerShell:
+   <div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">rabbitmqctl</span> <span class="n">status</span>
+</span></code></pre></div></p>
+</li>
+</ol>
+<p><strong>Ativar painel web de gerenciamento:</strong>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Ativar plugin</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">rabbitmq-plugins</span> <span class="n">enable</span> <span class="n">rabbitmq_management</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># Reiniciar serviço</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">Restart-Service</span> <span class="n">rabbitmq</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos="6 "></span></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos="7 "></span></a><span class="c"># Acessar: http://localhost:15672</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos="8 "></span></a><span class="c"># Usuário: guest | Senha: guest</span>
+</span></code></pre></div></p>
+<p><strong>Criar usuário para Docker:</strong>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Criar usuário para containers</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">rabbitmqctl</span> <span class="n">add_user</span> <span class="n">vortex</span> <span class="n">vortex123</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">rabbitmqctl</span> <span class="n">set_user_tags</span> <span class="n">vortex</span> <span class="n">administrator</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">rabbitmqctl</span> <span class="n">set_permissions</span> <span class="n">-p</span> <span class="p">/</span> <span class="n">vortex</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span> <span class="s2">&quot;.*&quot;</span>
+</span></code></pre></div></p>
+<h4 id="2-configurar-variaveis-de-ambiente">2. Configurar Variáveis de Ambiente</h4>
+<p>Crie arquivo <code>.env</code> com as configurações de variáveis de ambiente do projeto:</p>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos=" 1 "></span></a>INFLUXDB_HOST=influxdb
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos=" 2 "></span></a>INFLUXDB_PORT=8086
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos=" 3 "></span></a>INFLUXDB_DATABASE=
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos=" 4 "></span></a>INFLUXDB_USERNAME=
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos=" 5 "></span></a>INFLUXDB_PASSWORD=
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos=" 7 "></span></a>RABBITMQ_HOST=host.docker.internal
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><a href="#__codelineno-8-8"><span class="linenos" data-linenos=" 8 "></span></a>RABBITMQ_PORT=5672
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><a href="#__codelineno-8-9"><span class="linenos" data-linenos=" 9 "></span></a>RABBITMQ_USERNAME=
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><a href="#__codelineno-8-10"><span class="linenos" data-linenos="10 "></span></a>RABBITMQ_PASSWORD=
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><a href="#__codelineno-8-11"><span class="linenos" data-linenos="11 "></span></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><a href="#__codelineno-8-12"><span class="linenos" data-linenos="12 "></span></a>POSTGRES_HOST=postgres
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><a href="#__codelineno-8-13"><span class="linenos" data-linenos="13 "></span></a>POSTGRES_PORT=5432
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><a href="#__codelineno-8-14"><span class="linenos" data-linenos="14 "></span></a>POSTGRES_DATABASE=
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><a href="#__codelineno-8-15"><span class="linenos" data-linenos="15 "></span></a>POSTGRES_USERNAME=
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><a href="#__codelineno-8-16"><span class="linenos" data-linenos="16 "></span></a>POSTGRES_PASSWORD=
+</span></code></pre></div>
+<h3 id="execucao-da-aplicacao">Execução da Aplicação</h3>
+<h4 id="1-iniciar-rabbitmq-windows">1. Iniciar RabbitMQ (Windows)</h4>
+<div class="language-powershell highlight"><span class="filename">PowerShell</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="c"># Iniciar serviço RabbitMQ</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">Start-Service</span> <span class="n">RabbitMQ</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos="4 "></span></a><span class="c"># Verificar status</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">Get-Service</span> <span class="n">RabbitMQ</span>
+</span></code></pre></div>
+<h4 id="2-executar-componentes-containerizados">2. Executar Componentes Containerizados</h4>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># Construir e executar todos os serviços containerizados</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># Verificar status dos containers</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos="5 "></span></a>docker-compose<span class="w"> </span>ps
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><a href="#__codelineno-10-6"><span class="linenos" data-linenos="6 "></span></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><a href="#__codelineno-10-7"><span class="linenos" data-linenos="7 "></span></a><span class="c1"># Visualizar logs</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><a href="#__codelineno-10-8"><span class="linenos" data-linenos="8 "></span></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>vortex-server
+</span></code></pre></div>
+<h4 id="3-estrutura-do-docker-compose">3. Estrutura do Docker Compose</h4>
+<p>O projeto utiliza um arquivo <code>docker-compose.yml</code> que define todos os serviços necessários:</p>
+<ul>
+<li><strong>vortex-server</strong>: Aplicação principal (.NET 9)</li>
+<li><strong>vortex-api</strong>: API REST para configuração</li>
+<li><strong>vortex-interface</strong>: Interface web do usuário</li>
+<li><strong>postgres</strong>: Banco de dados PostgreSQL para configurações</li>
+<li><strong>influxDB</strong>: Banco de dados time series para dados coletados</li>
+<li><strong>grafana</strong>: Dashboard para visualização de métricas</li>
+</ul>
+<h4 id="4-portas-e-acesso">4. Portas e Acesso</h4>
+<p>Após a execução, os seguintes serviços estarão disponíveis:</p>
+<table>
+<thead>
+<tr>
+<th>Serviço</th>
+<th>Porta</th>
+<th>URL de Acesso</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vortex API</strong></td>
+<td>5000</td>
+<td>http://localhost:5000</td>
+<td>API REST</td>
+</tr>
+<tr>
+<td><strong>Swagger UI</strong></td>
+<td>5000</td>
+<td>http://localhost:5000/swagger</td>
+<td>Documentação da API</td>
+</tr>
+<tr>
+<td><strong>Vortex Interface</strong></td>
+<td>3000</td>
+<td>http://localhost:3000</td>
+<td>Interface web</td>
+</tr>
+<tr>
+<td><strong>Grafana</strong></td>
+<td>3001</td>
+<td>http://localhost:3001</td>
+<td>Dashboards</td>
+</tr>
+<tr>
+<td><strong>RabbitMQ Management</strong></td>
+<td>15672</td>
+<td>http://localhost:15672</td>
+<td>Gerenciamento do RabbitMQ</td>
+</tr>
+<tr>
+<td><strong>InfluxDB Web Console</strong></td>
+<td>8086</td>
+<td>http://localhost:8086</td>
+<td>Console do InfluxDB</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>5432</td>
+<td>localhost:5432</td>
+<td>Banco de dados</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-verificacao-da-instalacao">5. Verificação da Instalação</h4>
+<p>Após executar o <code>docker-compose up -d</code>, verifique se todos os serviços estão funcionando:</p>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># Verificar status de todos os containers</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos=" 2 "></span></a>docker-compose<span class="w"> </span>ps
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># Verificar logs de inicialização</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos=" 5 "></span></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>--tail<span class="o">=</span><span class="m">50</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><a href="#__codelineno-11-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><a href="#__codelineno-11-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># Testar conectividade da API</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><a href="#__codelineno-11-8"><span class="linenos" data-linenos=" 8 "></span></a>curl<span class="w"> </span>http://localhost:5000/swagger/v1/swagger.json
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><a href="#__codelineno-11-9"><span class="linenos" data-linenos=" 9 "></span></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><a href="#__codelineno-11-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># Verificar RabbitMQ</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><a href="#__codelineno-11-11"><span class="linenos" data-linenos="11 "></span></a>curl<span class="w"> </span>http://localhost:15672
+</span></code></pre></div>
+<p><strong>Indicadores de Sucesso:</strong>
+- ✅ Todos os containers estão com status "Up"
+- ✅ API responde em http://localhost:5000
+- ✅ Swagger UI acessível em http://localhost:5000/swagger
+- ✅ RabbitMQ Management acessível em http://localhost:15672
+- ✅ Grafana acessível em http://localhost:3001</p>
+<h3 id="arquitetura-de-execucao">Arquitetura de Execução</h3>
+<h4 id="componentes-executados-fora-do-container-windows">🔧 Componentes Executados FORA do Container (Windows)</h4>
+<ul>
+<li><strong>RabbitMQ</strong>: Broker de mensagens (instalado diretamente no Windows)</li>
+<li><strong>Erlang</strong>: Runtime necessário para o RabbitMQ</li>
+</ul>
+<h4 id="componentes-executados-dentro-do-container-docker">🐳 Componentes Executados DENTRO do Container (Docker)</h4>
+<ul>
+<li><strong>Vortex Server</strong>: Aplicação principal (.NET 9)</li>
+<li><strong>PostgreSQL</strong>: Banco de dados para configurações</li>
+<li><strong>InfluxDB</strong>: Banco de dados time series</li>
+<li><strong>Grafana</strong>: Observabilidade e dashboards</li>
+<li><strong>API</strong>: Interface de comunicação</li>
+<li><strong>Interface</strong>: Interface web do usuário</li>
+</ul>
+<h2 id="monitoramento">📊 Monitoramento</h2>
+<p>O Vortex Server fornece logs detalhados sobre:</p>
+<ul>
+<li>Status da inicialização dos bancos de dados</li>
+<li>Descoberta e configuração de coletores</li>
+<li>Processamento de mensagens</li>
+<li>Erros e exceções</li>
+</ul>
+<h3 id="acessos-para-monitoramento">Acessos para Monitoramento</h3>
+<ul>
+<li><strong>Logs em Tempo Real</strong>: <code>docker-compose logs -f vortex-server</code></li>
+<li><strong>Grafana Dashboard</strong>: http://localhost:3001 (admin/admin)</li>
+<li><strong>RabbitMQ Management</strong>: http://localhost:15672 (guest/guest)</li>
+<li><strong>InfluxDB Console</strong>: http://localhost:8086</li>
+<li><strong>API Swagger</strong>: http://localhost:5000/swagger</li>
+</ul>
+<h2 id="manutencao">🔧 Manutenção</h2>
+<h3 id="logs">Logs</h3>
+<p>Os logs da aplicação são exibidos no console e incluem:
+- ✅ Eventos de sucesso
+- ⚠️ Avisos e alertas
+- ❌ Erros críticos
+- 🔍 Informações de debug</p>
+<h3 id="backup">Backup</h3>
+<p>É recomendado fazer backup regular dos bancos de dados PostgreSQL e Influx.</p>
+<h3 id="atualizacoes">Atualizações</h3>
+<p>Para atualizar o servidor:
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 1. Parar a aplicação</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos=" 2 "></span></a>docker-compose<span class="w"> </span>down
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># 2. Fazer backup dos dados</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># (usar comandos de backup acima)</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><a href="#__codelineno-12-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><a href="#__codelineno-12-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 3. Atualizar código fonte</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><a href="#__codelineno-12-8"><span class="linenos" data-linenos=" 8 "></span></a>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><a href="#__codelineno-12-9"><span class="linenos" data-linenos=" 9 "></span></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><a href="#__codelineno-12-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 4. Reconstruir imagens</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a><a href="#__codelineno-12-11"><span class="linenos" data-linenos="11 "></span></a>docker-compose<span class="w"> </span>build<span class="w"> </span>--no-cache
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a><a href="#__codelineno-12-12"><span class="linenos" data-linenos="12 "></span></a>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a><a href="#__codelineno-12-13"><span class="linenos" data-linenos="13 "></span></a><span class="c1"># 5. Reiniciar aplicação</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14"></a><a href="#__codelineno-12-14"><span class="linenos" data-linenos="14 "></span></a>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div></p>
+<h3 id="limpeza-de-recursos">Limpeza de Recursos</h3>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># Limpar containers parados</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos=" 2 "></span></a>docker-compose<span class="w"> </span>down<span class="w"> </span>--remove-orphans
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># Limpar volumes não utilizados</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos=" 5 "></span></a>docker<span class="w"> </span>volume<span class="w"> </span>prune
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><a href="#__codelineno-13-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><a href="#__codelineno-13-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># Limpar imagens antigas</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><a href="#__codelineno-13-8"><span class="linenos" data-linenos=" 8 "></span></a>docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w"> </span>-a
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a><a href="#__codelineno-13-9"><span class="linenos" data-linenos=" 9 "></span></a>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><a href="#__codelineno-13-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># Limpar sistema completo</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><a href="#__codelineno-13-11"><span class="linenos" data-linenos="11 "></span></a>docker<span class="w"> </span>system<span class="w"> </span>prune<span class="w"> </span>-a<span class="w"> </span>--volumes
+</span></code></pre></div>
+<h3 id="comandos-de-manutencao-diaria">Comandos de Manutenção Diária</h3>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># Verificar status geral</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos=" 2 "></span></a>docker-compose<span class="w"> </span>ps
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><a href="#__codelineno-14-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1"># Verificar logs recentes</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><a href="#__codelineno-14-5"><span class="linenos" data-linenos=" 5 "></span></a>docker-compose<span class="w"> </span>logs<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><a href="#__codelineno-14-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><a href="#__codelineno-14-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># Verificar uso de recursos</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><a href="#__codelineno-14-8"><span class="linenos" data-linenos=" 8 "></span></a>docker<span class="w"> </span>stats<span class="w"> </span>--no-stream
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><a href="#__codelineno-14-9"><span class="linenos" data-linenos=" 9 "></span></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><a href="#__codelineno-14-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># Verificar espaço em disco</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><a href="#__codelineno-14-11"><span class="linenos" data-linenos="11 "></span></a>docker<span class="w"> </span>system<span class="w"> </span>df
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Veter
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="/javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
