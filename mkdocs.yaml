@@ -91,19 +91,10 @@ plugins:
   - mkdocstrings:
       default_handler: python
 
-extra:
-  alternate:
-    - name: PT
-      link: /pt/
-      lang: pt
-    - name: EN
-      link: /en/
-      lang: en
-
 nav:
   - Home: index.md
-  - Arquitetura: arquitetura/resumo.md
-  - Proposta Comercial: proposta_comercial/index.md
+  - Vortex Arquitetura: arquitetura/resumo.md
+  - Vortex Comercial: vortex_comercial/index.md
   - Vortex Server: vortex_server/index.md
   - Vortex Collector: vortex_collector/index.md
   - Vortex API: vortex_api/index.md
