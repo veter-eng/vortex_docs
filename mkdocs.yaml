@@ -94,7 +94,7 @@ plugins:
 nav:
   - Home: index.md
   - Vortex Arquitetura: arquitetura/resumo.md
-  - Vortex Comercial: proposta_comercial/index.md
+  - Vortex Comercial: vortex_comercial/index.md
   - Vortex Server: vortex_server/index.md
   - Vortex Collector: vortex_collector/index.md
   - Vortex API: vortex_api/index.md
